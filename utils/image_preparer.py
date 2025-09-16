@@ -35,7 +35,7 @@ def save_image(save_dir, image_index, color_image, depth_image):
     print(f"[{image_index}] Saved color image to {color_path}")
     print(f"[{image_index}] Saved depth image to {depth_path}")
 
-def save_rgbd_with_mask(save_dir, image_index, color_image, depth_image, depth_threshold=2000):
+def save_rgbd_with_mask(save_dir, image_index, color_image, depth_image, depth_threshold=600):
     """
     Save RGB-D images with optional masking based on depth and green-screen background removal.
     
@@ -65,7 +65,7 @@ def save_rgbd_with_mask(save_dir, image_index, color_image, depth_image, depth_t
 
     # --- Color filtering (remove green screen background) ---
     hsv = cv2.cvtColor(color_image, cv2.COLOR_BGR2HSV)
-    lower_green = np.array([35, 40, 40])
+    lower_green = np.array([30, 20, 20])
     upper_green = np.array([85, 255, 255])
     color_mask = cv2.inRange(hsv, lower_green, upper_green)
 
